@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<GridPane alignment="CENTER" hgap="40.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #FAF9F6;" vgap="40.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nasa.spaceagencymanager.DataScreenController">
+  <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.60009765625" minWidth="10.0" prefWidth="254.60009765625" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.7999267578125" minWidth="10.0" prefWidth="155.39990234375" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="643.7999511718751" minWidth="10.0" prefWidth="575.7999511718751" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="634.8" minWidth="0.0" prefWidth="207.60009765625" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="556.6000000000001" minWidth="0.0" prefWidth="106.39990234375" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="1.0" prefHeight="1.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="102.79998779296874" minHeight="0.0" prefHeight="102.79998779296874" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="275.8" minHeight="10.0" prefHeight="163.60001220703128" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="251.60003662109375" minHeight="10.0" prefHeight="177.5999755859375" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="161.4000244140625" minHeight="10.0" prefHeight="161.4000244140625" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Button fx:id="BackButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#backToFirstScreen" onMouseEntered="#dimButton" onMouseExited="#lightenButton" prefHeight="50.0" prefWidth="90.0" style="-fx-background-color: #ffcb05; -fx-border-color: black;" text="Back" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.rowSpan="2" GridPane.valignment="TOP">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" height="42.65" offsetX="5.0" offsetY="5.0" radius="13.91" width="14.99">
+               <color>
+                  <Color red="0.6526315808296204" green="0.6526315808296204" blue="0.6526315808296204" />
+               </color>
+            </DropShadow>
+         </effect>
+         <font>
+            <Font name="Verdana Bold" size="20.0" />
+         </font>
+      </Button>
+      <Label fx:id="tableNameLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="86.0" prefWidth="645.0" text="Table Name Place Holder" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.valignment="TOP">
+         <font>
+            <Font name="Verdana Bold" size="36.0" />
+         </font>
+      </Label>
+      <TableView fx:id="mainTable" prefHeight="320.0" prefWidth="755.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2;" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="2" GridPane.rowSpan="3">
+         <cursor>
+            <Cursor fx:constant="CROSSHAIR" />
+         </cursor>
+      </TableView>
+      <VBox alignment="CENTER" fillWidth="false" prefHeight="415.0" prefWidth="50.0" spacing="40.0" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.rowSpan="3" GridPane.valignment="CENTER">
+         <children>
+            <ComboBox fx:id="dropDownBox" prefHeight="60.0" prefWidth="250.0" promptText="select table" style="-fx-background-color: white; -fx-border-radius: 100;" visibleRowCount="15">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" height="27.67" offsetX="5.0" offsetY="10.0" radius="14.8375" width="33.68">
+                     <color>
+                        <Color red="0.7315789461135864" green="0.7315789461135864" blue="0.7315789461135864" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </ComboBox>
+            <Button fx:id="InsertButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseEntered="#dimButton" onMouseExited="#lightenButton" prefHeight="60.0" prefWidth="250.0" style="-fx-border-radius: 200; -fx-background-color: #ffcb05;" text="Insert" textAlignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" height="42.65" offsetX="5.0" offsetY="5.0" radius="13.91" width="14.99">
+                     <color>
+                        <Color red="0.6526315808296204" green="0.6526315808296204" blue="0.6526315808296204" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <font>
+                  <Font name="Verdana Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="UpdateButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseEntered="#dimButton" onMouseExited="#lightenButton" prefHeight="60.0" prefWidth="250.0" style="-fx-border-radius: 200; -fx-background-color: #ffcb05;" text="Update" textAlignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" height="42.65" offsetX="5.0" offsetY="5.0" radius="13.91" width="14.99">
+                     <color>
+                        <Color red="0.6526315808296204" green="0.6526315808296204" blue="0.6526315808296204" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <font>
+                  <Font name="Verdana Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="DeleteButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseEntered="#dimButton" onMouseExited="#lightenButton" prefHeight="60.0" prefWidth="250.0" style="-fx-border-radius: 200; -fx-background-color: #ffcb05;" text="Delete" textAlignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" height="42.65" offsetX="5.0" offsetY="5.0" radius="13.91" width="14.99">
+                     <color>
+                        <Color red="0.6526315808296204" green="0.6526315808296204" blue="0.6526315808296204" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <font>
+                  <Font name="Verdana Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="LoadButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#LoadData" onMouseEntered="#dimButton" onMouseExited="#lightenButton" prefHeight="60.0" prefWidth="250.0" style="-fx-background-color: #ffcb05; -fx-border-color: black;" text="Load Data" textAlignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" height="42.65" offsetX="5.0" offsetY="5.0" radius="13.91" width="14.99">
+                     <color>
+                        <Color red="0.6526315808296204" green="0.6526315808296204" blue="0.6526315808296204" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <font>
+                  <Font name="Verdana Bold" size="20.0" />
+               </font>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding>
+         <GridPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </GridPane.margin>
+      </VBox>
+      <MenuBar style="-fx-background-color: #FAF9F6; -fx-border-color: black;" useSystemMenuBar="true" GridPane.columnSpan="2147483647" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Label text="© 2025 National Aeronautics and Space Administration. All rights reserved. Unauthorized use is prohibited." GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets right="20.0" />
+         </GridPane.margin>
+      </Label>
+   </children>
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+   </padding>
+</GridPane>

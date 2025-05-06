@@ -10,7 +10,7 @@ public class PrimaryController {
 
     @FXML
     private void switchToFirstScreen() throws Exception {
-        App.setRoot("firstScreen");
+        App.setRoot("dataScreen");
     }
 
     @FXML
