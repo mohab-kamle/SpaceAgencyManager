@@ -1,20 +1,25 @@
 package com.nasa.spaceagencymanager;
+
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 
 public class PrimaryController {
 
-   /* @FXML
-    private void switchToSecondary() throws IOException {
-        //test database connectivity 
-        String nametest;
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpaceManagerPU");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        Staff s = em.find(Staff.class, "01-2017908");
-        System.out.println(s);
-    }*/
+    @FXML
+    private Button primaryButton;
+
     @FXML
     private void switchToFirstScreen() throws Exception {
         App.setRoot("firstScreen");
     }
+
+    @FXML
+    private void dimButton() {
+        primaryButton.setOpacity(0.6); // dim it
+    }
+    @FXML
+    private void lightenButton() {
+        primaryButton.setOpacity(1.0); // back to full
+    }
+
 }
