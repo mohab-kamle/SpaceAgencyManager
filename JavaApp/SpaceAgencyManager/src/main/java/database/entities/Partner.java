@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package database.entities;
 
 import java.io.Serializable;
@@ -132,8 +129,15 @@ public class Partner implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "database.entities.Partner[ orgCode=" + orgCode + " ]";
-    }
+public String toString() {
+    return "Partner{" +
+            "orgCode='" + orgCode + '\'' +
+            ", name='" + name + '\'' +
+            ", address='" + address + '\'' +
+            ", email='" + email + '\'' +
+            ", phoneNo='" + phoneNo + '\'' +
+            '}';
+}
+
     
 }

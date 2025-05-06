@@ -113,8 +113,15 @@ public class TakesOff implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "database.entities.TakesOff[ missionID=" + missionID + " ]";
-    }
+public String toString() {
+    return "TakesOff{" +
+            "missionID='" + missionID + '\'' +
+            ", launchDate=" + launchDate +
+            ", endDate=" + endDate +
+            ", mission=" + (mission != null ? mission.toString() : "No mission assigned") +
+            ", spacecraft=" + (spacecraftID != null ? spacecraftID.toString() : "No spacecraft assigned") +
+            '}';
+}
+
     
 }

@@ -90,8 +90,16 @@ public class Conduct implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "database.entities.Conduct[ conductPK=" + conductPK + " ]";
-    }
+public String toString() {
+    // Get the required details from related entities (Research, Staff, Equipment)
+    String researchTitle = (research != null) ? research.getName() : "No Research Assigned";
+    String staffName = (staff != null) ? staff.getCin() : "No Staff Assigned";
+    String equipId = (equipID != null) ? equipID.getEquipID() : "No Equipment Assigned";
+    
+    // Return a more detailed and readable string representation
+    return String.format("Conduct [Research: %s, Staff: %s, Equipment: %s, ResearchID: %s, StaffCIN: %s]",
+                         researchTitle, staffName, equipId, conductPK.getResearchID(), conductPK.getStaffCIN());
+}
+
 
 }

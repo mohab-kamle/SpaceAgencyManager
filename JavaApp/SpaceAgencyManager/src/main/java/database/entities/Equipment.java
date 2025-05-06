@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package database.entities;
 
 import java.io.Serializable;
@@ -137,7 +133,8 @@ public class Equipment implements Serializable {
 
     @Override
     public String toString() {
-        return "database.entities.Equipment[ equipID=" + equipID + " ]";
+        return String.format("Equipment [ID: %s, Name: %s, Status: %s, Type: %s, Origin Country: %s, Kind: %s]",
+                equipID, name, status, type, originCountry, kind);
     }
-    
+
 }

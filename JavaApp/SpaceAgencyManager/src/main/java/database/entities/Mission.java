@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package database.entities;
 
 import java.io.Serializable;
@@ -139,7 +135,8 @@ public class Mission implements Serializable {
 
     @Override
     public String toString() {
-        return "database.entities.Mission[ missionID=" + missionID + " ]";
+        return String.format("Mission [ID: %s, Name: %s, Type: %s, Status: %s, Objective: %s, Planet: %s]",
+                missionID, name, type, status, objective, planetID != null ? planetID.getPlanetID() : "N/A");
     }
-    
+
 }

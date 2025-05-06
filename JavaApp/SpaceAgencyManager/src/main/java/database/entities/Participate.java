@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package database.entities;
 
 import java.io.Serializable;
@@ -96,7 +92,12 @@ public class Participate implements Serializable {
 
     @Override
     public String toString() {
-        return "database.entities.Participate[ participatePK=" + participatePK + " ]";
+        return String.format("Participate [Partner Org Code: %s, Research ID: %s, Category: %s, Partner: %s, Research: %s]",
+                participatePK != null ? participatePK.getPartnerOrgCode() : "N/A",
+                participatePK != null ? participatePK.getResearchID() : "N/A",
+                category != null ? category : "N/A",
+                partner != null ? partner.toString() : "N/A",
+                research != null ? research.toString() : "N/A");
     }
-    
+
 }

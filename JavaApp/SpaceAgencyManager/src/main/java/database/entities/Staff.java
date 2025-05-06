@@ -220,8 +220,17 @@ public class Staff implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "Staff[ cin = " + cin + ",name = "+fname+" "+mname+" "+lname +" ]";
-    }
+public String toString() {
+    return "Staff{" +
+            "cin='" + cin + '\'' +
+            ", fullName='" + fname + " " + (mname != null ? mname + " " : "") + lname + '\'' +
+            ", jobtype='" + jobtype + '\'' +
+            ", salary=" + salary +
+            ", birthDate=" + birthDate +
+            ", address='" + buildNo + " " + streetName + ", " + city + ", " + state + ", " + country + '\'' +
+            ", gender=" + (gender != null ? gender : "Not specified") +
+            '}';
+}
+
     
 }

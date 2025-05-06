@@ -8,6 +8,7 @@ com\nasa\spaceagencymanager\FirstScreenController.class
 database\entities\TakesOff.class
 com\nasa\spaceagencymanager\App.class
 com\nasa\spaceagencymanager\PrimaryController.class
+com\nasa\spaceagencymanager\TableLoader.class
 database\entities\Staff.class
 database\entities\Planet.class
 database\entities\Participate.class

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package database.entities;
 
 import java.io.Serializable;
@@ -169,8 +166,21 @@ public class Spacecraft implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "database.entities.Spacecraft[ spacecraftID=" + spacecraftID + " ]";
-    }
+public String toString() {
+    return "Spacecraft{" +
+            "spacecraftID='" + spacecraftID + '\'' +
+            ", name='" + name + '\'' +
+            ", type='" + type + '\'' +
+            ", launchPad='" + launchPad + '\'' +
+            ", size='" + size + '\'' +
+            ", weight='" + weight + '\'' +
+            ", status='" + status + '\'' +
+            ", powerSource='" + powerSource + '\'' +
+            ", cPeople=" + cPeople +
+            ", cLoad='" + cLoad + '\'' +
+            ", numberOfTakesOff=" + (takesOffSet != null ? takesOffSet.size() : 0) +
+            '}';
+}
+
     
 }

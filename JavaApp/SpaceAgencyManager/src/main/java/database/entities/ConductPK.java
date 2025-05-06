@@ -70,7 +70,7 @@ public class ConductPK implements Serializable {
 
     @Override
     public String toString() {
-        return "database.entities.ConductPK[ researchID=" + researchID + ", staffCIN=" + staffCIN + " ]";
+        return String.format("ConductPK [Research ID: %s, Staff CIN: %s]", researchID, staffCIN);
     }
-    
+
 }

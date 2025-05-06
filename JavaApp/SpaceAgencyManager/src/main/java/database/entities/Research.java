@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package database.entities;
 
 import java.io.Serializable;
@@ -142,8 +138,18 @@ public class Research implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "database.entities.Research[ researchID=" + researchID + " ]";
-    }
+public String toString() {
+    return "Research{" +
+            "researchID='" + researchID + '\'' +
+            ", name='" + name + '\'' +
+            ", type='" + type + '\'' +
+            ", findings='" + findings + '\'' +
+            ", publicationsNo=" + publicationsNo +
+            ", numberOfMissions=" + (missionSet != null ? missionSet.size() : 0) +
+            ", numberOfParticipates=" + (participateSet != null ? participateSet.size() : 0) +
+            ", numberOfConducts=" + (conductSet != null ? conductSet.size() : 0) +
+            '}';
+}
+
     
 }
