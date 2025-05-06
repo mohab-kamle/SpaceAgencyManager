@@ -3,6 +3,7 @@ database\entities\Partner.class
 database\entities\Equipment.class
 database\entities\ParticipatePK.class
 database\entities\Spacecraft.class
+com\nasa\spaceagencymanager\FirstScreenController.class
 database\entities\TakesOff.class
 com\nasa\spaceagencymanager\App.class
 com\nasa\spaceagencymanager\PrimaryController.class
@@ -11,5 +12,4 @@ database\entities\Planet.class
 database\entities\Participate.class
 database\entities\Research.class
 database\entities\ConductPK.class
-com\nasa\spaceagencymanager\SecondaryController.class
 database\entities\Conduct.class

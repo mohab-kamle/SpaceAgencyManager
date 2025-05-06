@@ -1,15 +1,9 @@
 package com.nasa.spaceagencymanager;
-
-import database.entities.Staff;
-import java.io.IOException;
 import javafx.fxml.FXML;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 public class PrimaryController {
 
-    @FXML
+   /* @FXML
     private void switchToSecondary() throws IOException {
         //test database connectivity 
         String nametest;
@@ -18,5 +12,9 @@ public class PrimaryController {
         em.getTransaction().begin();
         Staff s = em.find(Staff.class, "01-2017908");
         System.out.println(s);
+    }*/
+    @FXML
+    private void switchToFirstScreen() throws Exception {
+        App.setRoot("firstScreen");
     }
 }
