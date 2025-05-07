@@ -10,9 +10,9 @@ public class PrimaryController {
 
     @FXML
     private void switchToFirstScreen() throws Exception {
-        App.setRoot("dataScreen");
+        App.setRoot("firstScreen");
     }
-
+    
     @FXML
     private void dimButton() {
         primaryButton.setOpacity(0.6); // dim it
