@@ -76,7 +76,7 @@
                   </DropShadow>
                </effect>
             </ComboBox>
-            <Button fx:id="InsertButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseEntered="#dimButton" onMouseExited="#lightenButton" prefHeight="60.0" prefWidth="250.0" style="-fx-border-radius: 200; -fx-background-color: #ffcb05;" text="Insert" textAlignment="CENTER">
+            <Button fx:id="InsertButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#insertData" onMouseEntered="#dimButton" onMouseExited="#lightenButton" prefHeight="60.0" prefWidth="250.0" style="-fx-border-radius: 200; -fx-background-color: #ffcb05;" text="Insert" textAlignment="CENTER">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.nasa.spaceagencymanager.InsertFormController">
+    <children>
+        <VBox alignment="CENTER" spacing="10" maxWidth="400" layoutX="50" layoutY="30">
+            <Label text="Insert Staff Form" font="System Bold 18" />
+            
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="CIN:" />
+                <TextField fx:id="cin" promptText="Enter CIN" />
+            </HBox>
+            
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="First Name:" />
+                <TextField fx:id="fname" promptText="Enter First Name" />
+            </HBox>
+            
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Middle Name:" />
+                <TextField fx:id="mname" promptText="Enter Middle Name" />
+            </HBox>
+            
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Last Name:" />
+                <TextField fx:id="lname" promptText="Enter Last Name" />
+            </HBox>
+            
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Job Type:" />
+                <TextField fx:id="jobtype" promptText="Enter Job Type" />
+            </HBox>
+            
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Salary:" />
+                <TextField fx:id="salary" promptText="Enter Salary" />
+            </HBox>
+            
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Build No:" />
+                <TextField fx:id="buildNo" promptText="Enter Building Number" />
+            </HBox>
+            
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Street Name:" />
+                <TextField fx:id="streetName" promptText="Enter Street Name" />
+            </HBox>
+            
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Postal Code:" />
+                <TextField fx:id="postalCode" promptText="Enter Postal Code" />
+            </HBox>
+            
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="City:" />
+                <TextField fx:id="city" promptText="Enter City" />
+            </HBox>
+            
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="State:" />
+                <TextField fx:id="state" promptText="Enter State" />
+            </HBox>
+            
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Country:" />
+                <TextField fx:id="country" promptText="Enter Country" />
+            </HBox>
+            
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Gender:" />
+                <TextField fx:id="gender" promptText="Enter Gender (M/F)" />
+            </HBox>
+            
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Birth Date (YYYY-MM-DD):" />
+                <TextField fx:id="birthDate" promptText="Enter Birth Date" />
+            </HBox>
+            
+            <Button fx:id="submitButton" text="Submit" onAction="#submitForm" maxWidth="100" alignment="CENTER" />
+        </VBox>
+    </children>
+</AnchorPane>
