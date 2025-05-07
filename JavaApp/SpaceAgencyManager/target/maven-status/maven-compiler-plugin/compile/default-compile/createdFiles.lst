@@ -12,6 +12,7 @@ database\entities\Research.class
 database\entities\Spacecraft.class
 com\nasa\spaceagencymanager\App.class
 com\nasa\spaceagencymanager\PrimaryController.class
+com\nasa\spaceagencymanager\QueriesScreenController.class
 database\entities\Participate.class
 com\nasa\spaceagencymanager\TableEntityMapper.class
 database\entities\ConductPK.class

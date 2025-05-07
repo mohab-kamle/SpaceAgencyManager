@@ -1,12 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nasa.spaceagencymanager.FirstScreenController"
->
-    
+<AnchorPane id="AnchorPane" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nasa.spaceagencymanager.FirstScreenController">
+   <children>
+      <VBox layoutX="827.5" layoutY="350.0" prefHeight="331.0" prefWidth="265.0">
+         <children>
+            <Button fx:id="TableB" mnemonicParsing="false" onMouseEntered="#handleMouseEnterT" onMouseExited="#handleMouseLeaveT" prefHeight="90.0" prefWidth="270.0" style="-fx-background-color: #ffcb05; -fx-border-radius: 50px;" text="TABLES 📅 📖" textFill="#1f1f1f">
+               <font>
+                  <Font name="Verdana" size="24.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" height="21.11" offsetX="5.0" offsetY="5.0" radius="9.7775" width="20.0">
+                     <color>
+                        <Color red="0.13333334028720856" green="0.11372549086809158" blue="0.0470588244497776" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <Button fx:id="QueryB" mnemonicParsing="false" onMouseEntered="#handleMouseEnterB" onMouseExited="#handleMouseLeaveB" prefHeight="90.0" prefWidth="270.0" style="-fx-background-color: #ffcb05; -fx-border-radius: 50px;" text="Queries⚙⚙" textFill="#1f1f1f">
+               <VBox.margin>
+                  <Insets top="150.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Verdana" size="24.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" height="22.21" offsetX="5.0" offsetY="5.0" radius="10.0525" width="20.0">
+                     <color>
+                        <Color red="0.13333334028720856" green="0.11372549086809158" blue="0.0470588244497776" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>
