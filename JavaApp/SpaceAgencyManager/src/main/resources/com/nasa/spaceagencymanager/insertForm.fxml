@@ -1,86 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Pos?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.nasa.spaceagencymanager.InsertFormController">
-    <children>
-        <VBox alignment="CENTER" spacing="10" maxWidth="400" layoutX="50" layoutY="30">
-            <Label text="Insert Staff Form" font="System Bold 18" />
-            
-            <HBox alignment="CENTER_LEFT" spacing="10">
-                <Label text="CIN:" />
-                <TextField fx:id="cin" promptText="Enter CIN" />
-            </HBox>
-            
-            <HBox alignment="CENTER_LEFT" spacing="10">
-                <Label text="First Name:" />
-                <TextField fx:id="fname" promptText="Enter First Name" />
-            </HBox>
-            
-            <HBox alignment="CENTER_LEFT" spacing="10">
-                <Label text="Middle Name:" />
-                <TextField fx:id="mname" promptText="Enter Middle Name" />
-            </HBox>
-            
-            <HBox alignment="CENTER_LEFT" spacing="10">
-                <Label text="Last Name:" />
-                <TextField fx:id="lname" promptText="Enter Last Name" />
-            </HBox>
-            
-            <HBox alignment="CENTER_LEFT" spacing="10">
-                <Label text="Job Type:" />
-                <TextField fx:id="jobtype" promptText="Enter Job Type" />
-            </HBox>
-            
-            <HBox alignment="CENTER_LEFT" spacing="10">
-                <Label text="Salary:" />
-                <TextField fx:id="salary" promptText="Enter Salary" />
-            </HBox>
-            
-            <HBox alignment="CENTER_LEFT" spacing="10">
-                <Label text="Build No:" />
-                <TextField fx:id="buildNo" promptText="Enter Building Number" />
-            </HBox>
-            
-            <HBox alignment="CENTER_LEFT" spacing="10">
-                <Label text="Street Name:" />
-                <TextField fx:id="streetName" promptText="Enter Street Name" />
-            </HBox>
-            
-            <HBox alignment="CENTER_LEFT" spacing="10">
-                <Label text="Postal Code:" />
-                <TextField fx:id="postalCode" promptText="Enter Postal Code" />
-            </HBox>
-            
-            <HBox alignment="CENTER_LEFT" spacing="10">
-                <Label text="City:" />
-                <TextField fx:id="city" promptText="Enter City" />
-            </HBox>
-            
-            <HBox alignment="CENTER_LEFT" spacing="10">
-                <Label text="State:" />
-                <TextField fx:id="state" promptText="Enter State" />
-            </HBox>
-            
-            <HBox alignment="CENTER_LEFT" spacing="10">
-                <Label text="Country:" />
-                <TextField fx:id="country" promptText="Enter Country" />
-            </HBox>
-            
-            <HBox alignment="CENTER_LEFT" spacing="10">
-                <Label text="Gender:" />
-                <TextField fx:id="gender" promptText="Enter Gender (M/F)" />
-            </HBox>
-            
-            <HBox alignment="CENTER_LEFT" spacing="10">
-                <Label text="Birth Date (YYYY-MM-DD):" />
-                <TextField fx:id="birthDate" promptText="Enter Birth Date" />
-            </HBox>
-            
-            <Button fx:id="submitButton" text="Submit" onAction="#submitForm" maxWidth="100" alignment="CENTER" />
-        </VBox>
-    </children>
-</AnchorPane>
+<VBox alignment="CENTER" maxWidth="556.0" prefHeight="680.0" prefWidth="556.0" spacing="15.0" style="-fx-border-color: black; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nasa.spaceagencymanager.InsertFormController">
+    <Label fx:id="formTitle" text="Insert Form" underline="true">
+        <font>
+            <Font name="System Bold" size="24.0" />
+        </font>
+    </Label>
+
+    <!-- 15 generic input fields with fixed size -->
+    <TextField fx:id="field1" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
+    <TextField fx:id="field2" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
+    <TextField fx:id="field3" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
+    <TextField fx:id="field4" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
+    <TextField fx:id="field5" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
+    <TextField fx:id="field6" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
+    <TextField fx:id="field7" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
+    <TextField fx:id="field8" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
+    <TextField fx:id="field9" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
+    <TextField fx:id="field10" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
+    <TextField fx:id="field11" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
+    <TextField fx:id="field12" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
+    <TextField fx:id="field13" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
+    <TextField fx:id="field14" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
+    <TextField fx:id="field15" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
+
+    <Button fx:id="submitButton" alignment="CENTER" maxWidth="100" onAction="#submitForm" style="-fx-background-color: #ffcb05; -fx-border-color: black;" text="Submit">
+        <font>
+            <Font name="Verdana" size="18.0" />
+        </font>
+    </Button>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+</VBox>
