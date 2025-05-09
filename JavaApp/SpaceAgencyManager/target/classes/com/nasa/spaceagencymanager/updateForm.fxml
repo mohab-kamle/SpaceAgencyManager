@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -14,22 +15,66 @@
         </font>
     </Label>
 
-    <!-- 15 generic input fields with fixed size -->
-    <TextField fx:id="field1" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
-    <TextField fx:id="field2" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
-    <TextField fx:id="field3" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
-    <TextField fx:id="field4" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
-    <TextField fx:id="field5" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
-    <TextField fx:id="field6" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
-    <TextField fx:id="field7" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
-    <TextField fx:id="field8" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
-    <TextField fx:id="field9" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
-    <TextField fx:id="field10" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
-    <TextField fx:id="field11" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
-    <TextField fx:id="field12" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
-    <TextField fx:id="field13" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
-    <TextField fx:id="field14" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
-    <TextField fx:id="field15" maxHeight="60.0" maxWidth="300.0" minHeight="30.0" minWidth="100.0" prefHeight="60.0" prefWidth="300.0" visible="false" VBox.vgrow="NEVER" />
+    <HBox spacing="10.0">
+        <Label fx:id="label1" text="Field 1:" prefWidth="150.0" minWidth="150.0" maxWidth="150.0"/>
+        <TextField fx:id="field1" prefHeight="60.0" prefWidth="300.0" visible="false"/>
+    </HBox>
+    <HBox spacing="10.0">
+        <Label fx:id="label2" text="Field 2:" prefWidth="150.0" minWidth="150.0" maxWidth="150.0"/>
+        <TextField fx:id="field2" prefHeight="60.0" prefWidth="300.0" visible="false"/>
+    </HBox>
+    <HBox spacing="10.0">
+        <Label fx:id="label3" text="Field 3:" prefWidth="150.0" minWidth="150.0" maxWidth="150.0"/>
+        <TextField fx:id="field3" prefHeight="60.0" prefWidth="300.0" visible="false"/>
+    </HBox>
+    <HBox spacing="10.0">
+        <Label fx:id="label4" text="Field 4:" prefWidth="150.0" minWidth="150.0" maxWidth="150.0"/>
+        <TextField fx:id="field4" prefHeight="60.0" prefWidth="300.0" visible="false"/>
+    </HBox>
+    <HBox spacing="10.0">
+        <Label fx:id="label5" text="Field 5:" prefWidth="150.0" minWidth="150.0" maxWidth="150.0"/>
+        <TextField fx:id="field5" prefHeight="60.0" prefWidth="300.0" visible="false"/>
+    </HBox>
+    <HBox spacing="10.0">
+        <Label fx:id="label6" text="Field 6:" prefWidth="150.0" minWidth="150.0" maxWidth="150.0"/>
+        <TextField fx:id="field6" prefHeight="60.0" prefWidth="300.0" visible="false"/>
+    </HBox>
+    <HBox spacing="10.0">
+        <Label fx:id="label7" text="Field 7:" prefWidth="150.0" minWidth="150.0" maxWidth="150.0"/>
+        <TextField fx:id="field7" prefHeight="60.0" prefWidth="300.0" visible="false"/>
+    </HBox>
+    <HBox spacing="10.0">
+        <Label fx:id="label8" text="Field 8:" prefWidth="150.0" minWidth="150.0" maxWidth="150.0"/>
+        <TextField fx:id="field8" prefHeight="60.0" prefWidth="300.0" visible="false"/>
+    </HBox>
+    <HBox spacing="10.0">
+        <Label fx:id="label9" text="Field 9:" prefWidth="150.0" minWidth="150.0" maxWidth="150.0"/>
+        <TextField fx:id="field9" prefHeight="60.0" prefWidth="300.0" visible="false"/>
+    </HBox>
+    <HBox spacing="10.0">
+        <Label fx:id="label10" text="Field 10:" prefWidth="150.0" minWidth="150.0" maxWidth="150.0"/>
+        <TextField fx:id="field10" prefHeight="60.0" prefWidth="300.0" visible="false"/>
+    </HBox>
+    <HBox spacing="10.0">
+        <Label fx:id="label11" text="Field 11:" prefWidth="150.0" minWidth="150.0" maxWidth="150.0"/>
+        <TextField fx:id="field11" prefHeight="60.0" prefWidth="300.0" visible="false"/>
+    </HBox>
+    <HBox spacing="10.0">
+        <Label fx:id="label12" text="Field 12:" prefWidth="150.0" minWidth="150.0" maxWidth="150.0"/>
+        <TextField fx:id="field12" prefHeight="60.0" prefWidth="300.0" visible="false"/>
+    </HBox>
+    <HBox spacing="10.0">
+        <Label fx:id="label13" text="Field 13:" prefWidth="150.0" minWidth="150.0" maxWidth="150.0"/>
+        <TextField fx:id="field13" prefHeight="60.0" prefWidth="300.0" visible="false"/>
+    </HBox>
+    <HBox spacing="10.0">
+        <Label fx:id="label14" text="Field 14:" prefWidth="150.0" minWidth="150.0" maxWidth="150.0"/>
+        <TextField fx:id="field14" prefHeight="60.0" prefWidth="300.0" visible="false"/>
+    </HBox>
+    <HBox spacing="10.0">
+        <Label fx:id="label15" text="Field 15:" prefWidth="150.0" minWidth="150.0" maxWidth="150.0"/>
+        <TextField fx:id="field15" prefHeight="60.0" prefWidth="300.0" visible="false"/>
+    </HBox>
 
     <Button fx:id="submitButton" alignment="CENTER" maxWidth="100" onAction="#submitForm" style="-fx-background-color: #ffcb05; -fx-border-color: black;" text="Submit">
         <font>

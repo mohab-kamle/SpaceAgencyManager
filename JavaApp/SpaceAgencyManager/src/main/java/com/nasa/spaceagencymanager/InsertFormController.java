@@ -173,8 +173,8 @@ public class InsertFormController {
                 return Date.valueOf(value);
             }
             if(type ==  boolean.class || type == Boolean.class){
-               if(value == "true") return true;
-               else if(value == "false") return false;
+               if(value.equalsIgnoreCase("true")) return true;
+               else if(value.equalsIgnoreCase("false")) return false;
             }
             // Add other types if needed
         } catch (Exception e) {

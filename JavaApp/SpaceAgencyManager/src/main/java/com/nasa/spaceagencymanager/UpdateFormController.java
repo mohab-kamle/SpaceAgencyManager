@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Optional;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
@@ -24,6 +25,7 @@ public class UpdateFormController {
     @FXML
     private Button submitButton;
 
+
     // 15 input fields to use dynamically
     @FXML
     private TextField field1, field2, field3, field4, field5;
@@ -31,6 +33,15 @@ public class UpdateFormController {
     private TextField field6, field7, field8, field9, field10;
     @FXML
     private TextField field11, field12, field13, field14, field15;
+    
+    @FXML
+    private Label label1, label2, label3, label4, label5;
+    @FXML
+    private Label label6, label7, label8, label9, label10;
+    @FXML
+    private Label label11, label12, label13, label14, label15;
+
+    
 
     private Map<String, TextField> dynamicFieldMap = new HashMap<>();
     private Class<?> entityClass;
@@ -43,38 +54,75 @@ public class UpdateFormController {
         this.entityClass = TableEntityMapper.getEntityClass(tableName);
         buildDynamicForm();
     }
-
+    
+    
     private void buildDynamicForm() {
-        Object entityInstance = mainTable.getSelectionModel().getSelectedItem();
-            if (entityInstance == null) {
-                System.out.println("Please select a row to delete.");
-                return;
-            }
-        Field[] fields = entityClass.getDeclaredFields();
+    Object entityInstance = mainTable.getSelectionModel().getSelectedItem();
+    if (entityInstance == null) {
+        System.out.println("Please select a row to update.");
+        return;
+    }
+
+       Field[] fields = entityClass.getDeclaredFields();
         TextField[] inputs = {
             field1, field2, field3, field4, field5,
             field6, field7, field8, field9, field10,
             field11, field12, field13, field14, field15
         };
+        Label[] labels = {
+            label1, label2, label3, label4, label5,
+            label6, label7, label8, label9, label10,
+            label11, label12, label13, label14, label15
+        };
 
-        for (int i = 0; i < Math.min(fields.length, inputs.length); i++) {
-            fields[i].setAccessible(true);
-            String fieldName = fields[i].getName();
-            if (Modifier.isStatic(fields[i].getModifiers()) || fields[i].getName().equals("serialVersionUID")) continue;
-            dynamicFieldMap.put(fieldName, inputs[i]);
-            inputs[i].setPromptText(fieldName);
-            inputs[i].setVisible(true);
-            //inputs[i].setText(entityClass.getDeclaredField(fieldName).get);
+    int inputIndex = 0;
+    for (Field field : fields) {
+        field.setAccessible(true);
+        String fieldName = field.getName();
+
+        if (Modifier.isStatic(field.getModifiers()) || "serialVersionUID".equals(fieldName)) {
+            continue;
         }
 
-        // Hide unused fields
-        for (int i = fields.length; i < inputs.length; i++) {
-            inputs[i].setVisible(false);
+        if (inputIndex >= inputs.length) break;
+
+        TextField currentInput = inputs[inputIndex];
+        dynamicFieldMap.put(fieldName, currentInput);
+        labels[inputIndex].setText(fieldName+": ");
+        currentInput.setVisible(true);
+        labels[inputIndex].setVisible(true);
+
+        try {
+            Object value = field.get(entityInstance);
+            if (value != null) {
+                // If the field is a foreign key (another entity), try to show its ID
+                if (isForeignKeyField(field)) {
+                    Field idField = value.getClass().getDeclaredField("id");
+                    idField.setAccessible(true);
+                    Object idValue = idField.get(value);
+                    currentInput.setText(idValue != null ? idValue.toString() : "");
+                } else {
+                    currentInput.setText(value.toString());
+                }
+            } else {
+                currentInput.setText("");
+            }
+        } catch (Exception e) {
+            System.err.println("Error reading value for field " + fieldName + ": " + e.getMessage());
+            currentInput.setText("");
         }
 
-        formTitle.setText("Update " + targetTable);
+        inputIndex++;
     }
 
+    // Hide any unused fields
+    for (int i = inputIndex; i < inputs.length; i++) {
+        inputs[i].setVisible(false);
+        labels[i].setVisible(false);
+    }
+
+    formTitle.setText("Update " + targetTable);
+}
     @FXML
     private void submitForm() throws IllegalArgumentException, NoSuchFieldException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, InstantiationException {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpaceManagerPU");
@@ -204,8 +252,8 @@ public class UpdateFormController {
                 return Date.valueOf(value);
             }
             if(type ==  boolean.class || type == Boolean.class){
-               if(value.equals("true")) return true;
-               else if(value.equals("false")) return false;
+               if(value.equalsIgnoreCase("true")) return true;
+               else if(value.equalsIgnoreCase("false")) return false;
             }
             // Add other types if needed
         } catch (Exception e) {
