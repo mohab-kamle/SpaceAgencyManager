@@ -1,5 +1,6 @@
 database\entities\Mission.class
 database\entities\Partner.class
+com\nasa\spaceagencymanager\UpdateFormController.class
 database\entities\Equipment.class
 database\entities\ParticipatePK.class
 com\nasa\spaceagencymanager\DataScreenController.class

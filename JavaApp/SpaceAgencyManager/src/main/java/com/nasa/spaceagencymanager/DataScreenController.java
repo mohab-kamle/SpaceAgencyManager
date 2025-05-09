@@ -78,13 +78,13 @@ public class DataScreenController implements Initializable {
             try {
                 em.getTransaction().begin();
                 try {
-                    em.remove(em.contains(selectedRow) ? selectedRow : em.merge(selectedRow));
+                    em.remove(em.contains(selectedRow) ? selectedRow : em.merge(selectedRow)); //============> removes from table
                 } catch (Exception e) {
                     tableNameLabel.setText(e.getMessage());
                 }
-                em.getTransaction().commit();
+                em.getTransaction().commit(); //===============> actual line that save updates/changes to database
                 showSuccessDialog("Row deleted successfully.");
-                LoadData();
+                LoadData(); //================> should load data when table is updated 
             } catch (Exception e) {
                 showErrorDialog(e.getMessage());
                 e.printStackTrace();
@@ -162,4 +162,38 @@ FXMLLoader loader = new FXMLLoader(App.class.getResource("insertForm.fxml"));
             showErrorDialog("Unexpected error: " + e.getMessage());
         }
     }
+    
+    
+    @FXML
+    private void updateData() {
+        try {
+            Object selectedRow = mainTable.getSelectionModel().getSelectedItem();
+            String selectedTable = dropDownBox.getValue();
+            if (selectedTable == null) {
+                tableNameLabel.setText("Please choose a valid option");
+                return;
+            }
+FXMLLoader loader = new FXMLLoader(App.class.getResource("updateForm.fxml"));            
+            Parent root = loader.load();
+            UpdateFormController controller = loader.getController();
+            controller.setTargetTable(selectedTable, mainTable); //======================> here's where we're gonna pass thet 
+
+            Stage popupStage = new Stage();
+            popupStage.setTitle("Update Data");
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setScene(new Scene(root));
+            popupStage.showAndWait();
+
+            LoadData();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            showErrorDialog("Failed to open update form: " + e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            showErrorDialog("Unexpected error: " + e.getMessage());
+        }
+    }
+
 }
+

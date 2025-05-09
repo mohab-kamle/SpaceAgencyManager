@@ -7,6 +7,7 @@ import java.lang.reflect.Modifier;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -16,7 +17,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
 
-public class InsertFormController {
+public class UpdateFormController {
 
     @FXML
     private Label formTitle;
@@ -34,14 +35,21 @@ public class InsertFormController {
     private Map<String, TextField> dynamicFieldMap = new HashMap<>();
     private Class<?> entityClass;
     private String targetTable;
+    private TableView<Object> mainTable;
 
-    public void setTargetTable(String tableName) {
+    public void setTargetTable(String tableName, TableView<Object> mainTable) {
         this.targetTable = tableName;
+        this.mainTable = mainTable;
         this.entityClass = TableEntityMapper.getEntityClass(tableName);
         buildDynamicForm();
     }
 
     private void buildDynamicForm() {
+        Object entityInstance = mainTable.getSelectionModel().getSelectedItem();
+            if (entityInstance == null) {
+                System.out.println("Please select a row to delete.");
+                return;
+            }
         Field[] fields = entityClass.getDeclaredFields();
         TextField[] inputs = {
             field1, field2, field3, field4, field5,
@@ -56,6 +64,7 @@ public class InsertFormController {
             dynamicFieldMap.put(fieldName, inputs[i]);
             inputs[i].setPromptText(fieldName);
             inputs[i].setVisible(true);
+            //inputs[i].setText(entityClass.getDeclaredField(fieldName).get);
         }
 
         // Hide unused fields
@@ -63,7 +72,7 @@ public class InsertFormController {
             inputs[i].setVisible(false);
         }
 
-        formTitle.setText("Insert into " + targetTable);
+        formTitle.setText("Update " + targetTable);
     }
 
     @FXML
@@ -71,13 +80,21 @@ public class InsertFormController {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpaceManagerPU");
         EntityManager em = emf.createEntityManager();
         try {
-            Object entityInstance = entityClass.getDeclaredConstructor().newInstance();
+            
+            if (showConfirmationDialog()) {
+              Object entityInstance = mainTable.getSelectionModel().getSelectedItem();
+            if (entityInstance == null) {
+                System.out.println("Please select a row to delete.");
+                return;
+            }
+            
+            //KARIM: instead retrieve selected row
 
             // Populate the entity instance fields
             for (Map.Entry<String, TextField> entry : dynamicFieldMap.entrySet()) {
                 String fieldName = entry.getKey();
                 String inputValue = entry.getValue().getText();
-
+                
                 if (inputValue.isEmpty()) {
                     continue;
                 }
@@ -98,19 +115,34 @@ public class InsertFormController {
                 } else {
                     // Cast the input to the correct field type
                     Object value = castToFieldType(field.getType(), inputValue);
-                    field.set(entityInstance, value); //======================> set fields with new data before going back to database
+                    field.set(entityInstance, value);
                 }
             }
+            
 
-            // Start the transaction and persist the entity // updating databases with changes
-            em.getTransaction().begin();
-            em.persist(entityInstance);
-            em.getTransaction().commit();
+            try {
+                em.getTransaction().begin();
+                try {
+                    em.merge(entityInstance);
+                                            //showErrorDialog("");
 
+                } catch (Exception e) {
+                   // tableNameLabel.setText(e.getMessage());
+                   showErrorDialog(e.getMessage()); // ===========================> 
+                }
+                em.getTransaction().commit(); //===============> actual line that save updates/changes to database
             // Close the window and show success message
-            ((Stage) submitButton.getScene().getWindow()).close();
-            showSuccessDialog("Data inserted successfully!");
-
+                ((Stage) submitButton.getScene().getWindow()).close();
+                showSuccessDialog("Data updated successfully!");   
+            } catch (Exception e) {
+                showErrorDialog(e.getMessage());
+                e.printStackTrace();
+                em.getTransaction().rollback();
+            } finally {
+                em.close();
+            }
+        }
+            
         } catch (PersistenceException e) {
             Throwable cause = e.getCause();
             while (cause != null) {
@@ -123,7 +155,7 @@ public class InsertFormController {
 
             // General exception handling
             if (cause == null) {
-                showErrorDialog("An error occurred while inserting the data: " + e.getMessage());
+                showErrorDialog("An error occurred while updating the data: " + e.getMessage());
             }
 
             // Print the full stack trace for debugging
@@ -132,7 +164,6 @@ public class InsertFormController {
             // Make sure the EntityManager is closed after operation
             em.close();
         }
-
     }
 
     private boolean isForeignKeyField(Field field) {
@@ -173,8 +204,8 @@ public class InsertFormController {
                 return Date.valueOf(value);
             }
             if(type ==  boolean.class || type == Boolean.class){
-               if(value == "true") return true;
-               else if(value == "false") return false;
+               if(value.equals("true")) return true;
+               else if(value.equals("false")) return false;
             }
             // Add other types if needed
         } catch (Exception e) {
@@ -185,8 +216,8 @@ public class InsertFormController {
 
     private void showErrorDialog(String msg) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Insert Error");
-        alert.setHeaderText("Failed to insert data");
+        alert.setTitle("Update Error");
+        alert.setHeaderText("Failed to update data");
         alert.setContentText(msg);
         alert.showAndWait();
     }
@@ -199,4 +230,12 @@ public class InsertFormController {
         alert.showAndWait();
     }
 
+    private boolean showConfirmationDialog() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirm Update");
+        alert.setHeaderText("Are you sure you want to update this item?");
+        alert.setContentText("This action cannot be undone.");
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.isPresent() && result.get() == ButtonType.OK;
+    }
 }
