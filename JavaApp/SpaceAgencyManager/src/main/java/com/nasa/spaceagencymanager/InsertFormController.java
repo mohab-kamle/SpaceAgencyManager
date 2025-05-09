@@ -98,11 +98,11 @@ public class InsertFormController {
                 } else {
                     // Cast the input to the correct field type
                     Object value = castToFieldType(field.getType(), inputValue);
-                    field.set(entityInstance, value);
+                    field.set(entityInstance, value); //======================> set fields with new data before going back to database
                 }
             }
 
-            // Start the transaction and persist the entity
+            // Start the transaction and persist the entity // updating databases with changes
             em.getTransaction().begin();
             em.persist(entityInstance);
             em.getTransaction().commit();
@@ -171,6 +171,10 @@ public class InsertFormController {
             }
             if (type == java.sql.Date.class) {
                 return Date.valueOf(value);
+            }
+            if(type ==  boolean.class || type == Boolean.class){
+               if(value.equalsIgnoreCase("true")) return true;
+               else if(value.equalsIgnoreCase("false")) return false;
             }
             // Add other types if needed
         } catch (Exception e) {

@@ -1,6 +1,0 @@
-		-::PROJECT_COMP207_Members::-
-1 _ Omar diaa eldeen mahfouz    (Pure math & computer).
-2 _ Mohab mamdouh kamle mosa    (Computer science).
-3 _ youssef wael mostafa        (Computer science).
-4 _ kareem mamdouh abd al qadr  (Computer science).
-5 _ ziad mohammed gomaa youssef (Computer science).
