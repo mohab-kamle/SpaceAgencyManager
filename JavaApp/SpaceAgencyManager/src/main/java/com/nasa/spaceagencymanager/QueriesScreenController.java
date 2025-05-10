@@ -5,12 +5,15 @@ import database.entities.Research;
 import database.entities.Staff;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -69,8 +72,7 @@ public class QueriesScreenController implements Initializable {
             "Query 3: Programmers",
             "Query 4: Staff Name starts with 'A'",
             "Query 5: get details of the ternary conduct",
-            "Query 6: Department Staff Counts",
-            "Query 7: Staff and Roles"
+            "Query 6: Get all male staff that conducts Research"
         );
         QueryList.setPromptText("Select a Query");
         // Set a default placeholder
@@ -132,32 +134,58 @@ public class QueriesScreenController implements Initializable {
 
 
         switch (queryKey) {
-            case "Query 1":
+            case "Query 1": // worked
                 getRsearchThatAspecificPartnerParticipatesIn();
                 break;
-            case "Query 2": // Query 2 and 4 are the same as per original logic
+            case "Query 2": // Query 2 and 4 are the same as per original logic // Worked
                 displayStaffData(getStaffWithSalaryGreaterThan(100000.0));
                 break;
-            case "Query 3":
+            case "Query 3": // worked
                 displayStaffData(getProgrammers());
                 break;
-            case "Query 4":
+            case "Query 4": // worked
                 displayStaffData(getStaffWithNameStartingWith("A"));
                 break;
             case "Query 5":
                 getRelationsInConduct();
+                QueryDisc.setPlaceholder(new Label("sorry but this method working in terminal but not in UI, Ask Doctor"));
                 break;
-            case "Query 6": // Corrected typo from "qyery 7"
+            case "Query 6": // Corrected typo from "qyery 7" // worked
 //                displayDepartmentStaffCounts();
+                getAllMaleStaffThatConductsResearch();
                 break;
-            case "Query 7":
-//                displayStaffAndRoles();
-                break;
+//            case "Query 7":
+////                displayStaffAndRoles();
+//                break;
             default:
                 QueryDisc.setPlaceholder(new Label("Invalid query selected or not implemented."));
                 break;
         }
     }
+    
+    // the main issue was the hole table was inserted in the tableView not specoific columns
+    private void displayResearchData(List<Research> researchList) {
+        QueryDisc.getColumns().clear(); // Clear previous columns
+
+        TableColumn<Object, String> idCol = new TableColumn<>("ID");
+        idCol.setCellValueFactory(cellData -> {
+            Research research = (Research) cellData.getValue();
+            return new SimpleStringProperty(research.getResearchID().toString());
+        });
+
+        TableColumn<Object, String> titleCol = new TableColumn<>("Title");
+        titleCol.setCellValueFactory(cellData -> {
+            Research research = (Research) cellData.getValue();
+            return new SimpleStringProperty(research.getName());
+        });
+
+        // Add more columns as needed...
+
+        QueryDisc.getColumns().addAll(idCol, titleCol);
+        QueryDisc.setItems(FXCollections.observableArrayList(researchList));
+    }  
+    
+    
      // A better approach would be to pass Staff.class directly if we know it's Staff
    private void getRsearchThatAspecificPartnerParticipatesIn() {  
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpaceManagerPU");     
@@ -167,12 +195,13 @@ public class QueriesScreenController implements Initializable {
         List<Research> result = new ArrayList<>();
         for(Participate p: participatefList){
                
-               if(p.getPartner().getOrgCode().equalsIgnoreCase("7")){
+               if(p.getPartner().getOrgCode().equalsIgnoreCase("10")){
                    result.add(p.getResearch());
                }
 
         }
-        QueryDisc.getItems().setAll(result);
+//        QueryDisc.getItems().setAll(result);
+        displayResearchData(result);
         System.out.println("Result done");
     }
 
@@ -285,6 +314,68 @@ public class QueriesScreenController implements Initializable {
             return new ArrayList<>();
         }
     }
+    
+    
+    private void setupConductColumnsManually() {
+        QueryDisc.getColumns().clear(); // Clear any existing columns
+
+        TableColumn<Object, String> equipIdCol = new TableColumn<>("Equip_ID");
+        equipIdCol.setCellValueFactory(cellData -> {
+            Conduct cond = (Conduct) cellData.getValue();
+            // Assuming Staff has getId() that returns Long or Integer
+            return new SimpleStringProperty(cond.getEquipID()!= null ? cond.getEquipID().toString() : "N/A");
+        });
+
+        TableColumn<Object, String> researchIdCol = new TableColumn<>("Research_ID");
+        researchIdCol.setCellValueFactory(cellData -> {
+            Research res = (Research) cellData.getValue();
+            return new SimpleStringProperty(res.getResearchID().toString());
+        });
+
+        TableColumn<Object, String> staffIdCol = new TableColumn<>("");
+        staffIdCol.setCellValueFactory(cellData -> {
+            Staff staff = (Staff) cellData.getValue();
+            String s = String.valueOf(staff.getCin());
+            return new SimpleStringProperty(s);
+        });
+
+        QueryDisc.getColumns().addAll(equipIdCol, researchIdCol, staffIdCol);
+    }
+    
+//    private void displayConductData(List<Conduct> conductList) {
+//    QueryDisc.getColumns().clear(); // Clear previous columns
+//
+//    // Column for equip_ID
+//    TableColumn<Object, String> equipIDCol = new TableColumn<>("Equip ID");
+//    equipIDCol.setCellValueFactory(cellData -> {
+//        Conduct conduct = (Conduct) cellData.getValue();
+//        // Handle null case
+//        return new SimpleStringProperty(conduct.getEquipID() != null ? conduct.getEquipID().toString() : "N/A");  // Use "N/A" or an empty string
+//    });
+//
+//    // Column for staff_CIN
+//    TableColumn<Object, String> staffCINCol = new TableColumn<>("Staff CIN");
+//    staffCINCol.setCellValueFactory(cellData -> {
+//        Conduct conduct = (Conduct) cellData.getValue();
+//        return new SimpleStringProperty(conduct.getStaff() != null ? conduct.getStaff().toString() : "N/A");  // Handle null here as well
+//    });
+//
+//    // Column for research_ID
+//    TableColumn<Object, String> researchIDCol = new TableColumn<>("Research ID");
+//    researchIDCol.setCellValueFactory(cellData -> {
+//        Conduct conduct = (Conduct) cellData.getValue();
+//        return new SimpleStringProperty(conduct.getResearch() != null ? conduct.getResearch().toString() : "N/A");  // Handle null here as well
+//    });
+//
+//    // Add all columns to the QueryDisc table
+//    QueryDisc.getColumns().addAll(equipIDCol, staffCINCol, researchIDCol);
+//
+//    // Set the items in the table
+//    QueryDisc.setItems(FXCollections.observableArrayList(conductList));
+//}
+
+
+    
     private void getRelationsInConduct() {
     if (emf == null) return;
     
@@ -295,15 +386,18 @@ public class QueriesScreenController implements Initializable {
         List<Conduct> conductList = em.createNamedQuery("Conduct.findAll", Conduct.class).getResultList();
         
         // Add the results to the QueryDisc table
-        QueryDisc.getItems().addAll(conductList);
+//        QueryDisc.getItems().addAll(conductList);
+        QueryDisc.getItems().addAll("sorry but this method working in terminal but not in UI, Ask Doctor");
+//        displayConductData(conductList);
+        System.out.println(conductList);
     } catch (Exception e) {
         Logger.getLogger(QueriesScreenController.class.getName()).log(Level.SEVERE, "Error fetching Conduct entities", e);
+        setupConductColumnsManually();
     } finally {
         // Close the EntityManager to avoid resource leaks
         em.close();
     }
 }
-
 
     private List<Staff> getProgrammers() {
         if (emf == null) return new ArrayList<>();
@@ -337,6 +431,49 @@ public class QueriesScreenController implements Initializable {
             return new ArrayList<>();
         }
     }
+    
+    
+    private void getAllMaleStaffThatConductsResearch() {    
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpaceManagerPU");
+        EntityManager em = emf.createEntityManager();
+        QueryDisc.getColumns().clear();
+
+        for (Field field : Staff.class.getDeclaredFields()) {
+            if (Modifier.isStatic(field.getModifiers()) || field.getName().equals("serialVersionUID")) continue;
+
+            field.setAccessible(true);
+            Class<?> fieldType = field.getType();
+
+            // Create column with correct type
+            TableColumn<Object, ?> column = createTypedColumn(field.getName(), field, fieldType);
+            if (column != null) {
+                QueryDisc.getColumns().add(column);
+            }
+        }
+        
+        List<Conduct> allConducts = em.createQuery("FROM " + Conduct.class.getSimpleName(), Conduct.class).getResultList();
+        List<Staff> results = new ArrayList<>();
+        for(Conduct c : allConducts){
+               if(c.getStaff().getGender().equals("M".charAt(0))) results.add(c.getStaff());
+        }
+        QueryDisc.getItems().setAll(results);
+    }
+    
+    private static <T> TableColumn<Object, T> createTypedColumn(String name, Field field, Class<T> fieldType) {
+        TableColumn<Object, T> column = new TableColumn<>(name);
+        column.setCellValueFactory(cellData -> {
+            try {
+                T value = fieldType.cast(field.get(cellData.getValue()));
+                return new ReadOnlyObjectWrapper<>(value);
+            } catch (IllegalAccessException | ClassCastException e) {
+                e.printStackTrace();
+                return new ReadOnlyObjectWrapper<>(null);
+            }
+        });
+        return column;
+    }
+
+
 
     /**
      * Optional: Call this method when the application is shutting down to release JPA resources.
