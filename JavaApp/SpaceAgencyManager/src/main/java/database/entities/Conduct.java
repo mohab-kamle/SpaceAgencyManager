@@ -10,7 +10,9 @@ import java.io.Serializable;
 @javax.persistence.NamedQueries({
     @javax.persistence.NamedQuery(name = "Conduct.findAll", query = "SELECT c FROM Conduct c"),
     @javax.persistence.NamedQuery(name = "Conduct.findByResearchID", query = "SELECT c FROM Conduct c WHERE c.conductPK.researchID = :researchID"),
-    @javax.persistence.NamedQuery(name = "Conduct.findByStaffCIN", query = "SELECT c FROM Conduct c WHERE c.conductPK.staffCIN = :staffCIN")})
+    @javax.persistence.NamedQuery(name = "Conduct.findByStaffCIN", query = "SELECT c FROM Conduct c WHERE c.conductPK.staffCIN = :staffCIN"),
+//    @javax.persistence.NamedQuery(name = "Conduct.findAllJoin",query = "SELECT c FROM Conduct cLEFT JOIN FETCH c.research rLEFT JOIN FETCH r.missionSet LEFT JOIN FETCH c.staff s LEFT JOIN FETCH c.equipment e"),
+})
 public class Conduct implements Serializable {
 
     private static final long serialVersionUID = 1L;
