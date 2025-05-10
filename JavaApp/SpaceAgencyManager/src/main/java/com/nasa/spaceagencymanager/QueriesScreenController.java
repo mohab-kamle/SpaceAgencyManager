@@ -135,13 +135,13 @@ public class QueriesScreenController implements Initializable {
             case "Query 1":
                 getRsearchThatAspecificPartnerParticipatesIn();
                 break;
-            case "Query 2": // Query 2 and 4 are the same as per original logic
+            case "Query 2": // Query 2 and 4 are the same as per original logic // Worked
                 displayStaffData(getStaffWithSalaryGreaterThan(100000.0));
                 break;
-            case "Query 3":
+            case "Query 3": // worked
                 displayStaffData(getProgrammers());
                 break;
-            case "Query 4":
+            case "Query 4": // worked
                 displayStaffData(getStaffWithNameStartingWith("A"));
                 break;
             case "Query 5":
@@ -158,6 +158,30 @@ public class QueriesScreenController implements Initializable {
                 break;
         }
     }
+    
+    // the main issue was the hole table was inserted in the tableView not specoific columns
+    private void displayResearchData(List<Research> researchList) {
+        QueryDisc.getColumns().clear(); // Clear previous columns
+
+        TableColumn<Object, String> idCol = new TableColumn<>("ID");
+        idCol.setCellValueFactory(cellData -> {
+            Research research = (Research) cellData.getValue();
+            return new SimpleStringProperty(research.getResearchID().toString());
+        });
+
+        TableColumn<Object, String> titleCol = new TableColumn<>("Title");
+        titleCol.setCellValueFactory(cellData -> {
+            Research research = (Research) cellData.getValue();
+            return new SimpleStringProperty(research.getName());
+        });
+
+        // Add more columns as needed...
+
+        QueryDisc.getColumns().addAll(idCol, titleCol);
+        QueryDisc.setItems(FXCollections.observableArrayList(researchList));
+    }  
+    
+    
      // A better approach would be to pass Staff.class directly if we know it's Staff
    private void getRsearchThatAspecificPartnerParticipatesIn() {  
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SpaceManagerPU");     
@@ -172,7 +196,8 @@ public class QueriesScreenController implements Initializable {
                }
 
         }
-        QueryDisc.getItems().setAll(result);
+//        QueryDisc.getItems().setAll(result);
+        displayResearchData(result);
         System.out.println("Result done");
     }
 
